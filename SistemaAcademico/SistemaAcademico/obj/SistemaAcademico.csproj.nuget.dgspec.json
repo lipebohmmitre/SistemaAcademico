@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
+    "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
+    "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "projectUniqueName": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
         "projectName": "SistemaAcademico",
-        "projectPath": "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "projectPath": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
         "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\obj\\",
+        "outputPath": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",

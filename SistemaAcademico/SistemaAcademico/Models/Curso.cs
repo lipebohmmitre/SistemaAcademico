@@ -13,5 +13,9 @@ namespace SistemaAcademico.Models
         public int SubCategoriaId { get; set; }
         [JsonIgnore]
         public SubCategoria? SubCategoria { get; set; }
+
+
+
+        public ICollection<Disciplina>? Disciplinas { get; set;}
     }
 }

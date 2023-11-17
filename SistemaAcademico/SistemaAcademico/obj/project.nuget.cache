@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7bOMRT3GL4gmu/6pLVwBzBtbd90ZSfJ+ceXRuyGMP9q8VkpR/uWclTfU+4bSGvkby3XbyNnJaBJKc+LrTdbPkA==",
+  "dgSpecHash": "QCBKYWJh8AGq9aX605628YCbA0YssP+kV+02Pxj773ubeVvwBilnJYILHCx1qCQkR9jg1oor8YbpwFgu+L7GQA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuário\\Desktop\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+  "projectFilePath": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuário\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Usuário\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",

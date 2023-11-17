@@ -49,6 +49,24 @@ namespace SistemaAcademico.Controllers
         }
 
 
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Curso>> Update(int id, [FromBody] Curso curso)
+        {
+            var cursoById = await _context.Cursos.FindAsync(id);
+
+            if (cursoById is null) return BadRequest("Curso nulo");
+
+            cursoById.Nome = curso.Nome;
+            cursoById.Descricao = curso.Descricao;
+            cursoById.SubCategoriaId = curso.SubCategoriaId;
+
+            _context.Cursos.Update(cursoById);
+            await _context.SaveChangesAsync();
+
+            return Ok(cursoById);
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {

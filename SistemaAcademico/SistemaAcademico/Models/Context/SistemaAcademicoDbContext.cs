@@ -9,5 +9,6 @@ namespace SistemaAcademico.Models.Context
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<SubCategoria> SubCategorias { get; set;}
         public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Disciplina> Disciplinas { get; set; }
     }
 }

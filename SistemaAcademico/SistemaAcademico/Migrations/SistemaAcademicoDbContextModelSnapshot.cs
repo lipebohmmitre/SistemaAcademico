@@ -18,6 +18,21 @@ namespace SistemaAcademico.Migrations
                 .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("CursoDisciplina", b =>
+                {
+                    b.Property<int>("CursosCursoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DisciplinasDisciplinaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CursosCursoId", "DisciplinasDisciplinaId");
+
+                    b.HasIndex("DisciplinasDisciplinaId");
+
+                    b.ToTable("CursoDisciplina");
+                });
+
             modelBuilder.Entity("SistemaAcademico.Models.Categoria", b =>
                 {
                     b.Property<int>("CategoriaId")
@@ -57,6 +72,26 @@ namespace SistemaAcademico.Migrations
                     b.ToTable("Cursos");
                 });
 
+            modelBuilder.Entity("SistemaAcademico.Models.Disciplina", b =>
+                {
+                    b.Property<int>("DisciplinaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("CargaHoraria")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TipoDisciplina")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("DisciplinaId");
+
+                    b.ToTable("Disciplinas");
+                });
+
             modelBuilder.Entity("SistemaAcademico.Models.SubCategoria", b =>
                 {
                     b.Property<int>("SubCategoriaId")
@@ -77,6 +112,21 @@ namespace SistemaAcademico.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.ToTable("SubCategorias");
+                });
+
+            modelBuilder.Entity("CursoDisciplina", b =>
+                {
+                    b.HasOne("SistemaAcademico.Models.Curso", null)
+                        .WithMany()
+                        .HasForeignKey("CursosCursoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SistemaAcademico.Models.Disciplina", null)
+                        .WithMany()
+                        .HasForeignKey("DisciplinasDisciplinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SistemaAcademico.Models.Curso", b =>

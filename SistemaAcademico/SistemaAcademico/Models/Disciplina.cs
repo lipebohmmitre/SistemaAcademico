@@ -10,5 +10,6 @@ namespace SistemaAcademico.Models
         public string? TipoDisciplina { get; set; }
 
 
+        public ICollection<Curso>? Cursos { get; set; }
     }
 }
