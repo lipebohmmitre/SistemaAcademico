@@ -4,6 +4,13 @@ namespace SistemaAcademico.Models
 {
     public class Disciplina
     {
+
+        public Disciplina()
+        {
+            Cursos = new List<Curso>();
+        }
+
+
         public int DisciplinaId { get; set; }
         public string? Nome {  get; set; }
         public decimal CargaHoraria { get; set; }

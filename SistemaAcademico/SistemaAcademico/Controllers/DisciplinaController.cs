@@ -80,5 +80,23 @@ namespace SistemaAcademico.Controllers
         }
 
 
+
+
+        // Funcionou, porem quando tentei adicionar 1, 1 ocorreu erro de chaves iguais, olhar depois
+        [HttpPatch("{idDisciplina}/{idCurso}")]
+        public async Task<ActionResult<Disciplina>> AdicionarCursoNaDisciplina(int idDisciplina, int idCurso)
+        {
+            Disciplina disciplina = await _context.Disciplinas.FirstOrDefaultAsync(p => p.DisciplinaId == idDisciplina);
+            Curso curso = await _context.Cursos.FirstOrDefaultAsync(p => p.CursoId == idCurso);
+
+            if (disciplina is null || curso is null) return BadRequest();
+
+            disciplina.Cursos.Add(curso);
+            await _context.SaveChangesAsync();
+
+            return Ok(disciplina);
+        }
+
+
     }
 }
