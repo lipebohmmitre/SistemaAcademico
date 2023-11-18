@@ -98,5 +98,27 @@ namespace SistemaAcademico.Controllers
         }
 
 
+        // Melhorar Código
+        [HttpPatch("listaDisciplinas/{idCurso}")]
+        public async Task<ActionResult<Curso>> AdicionarListaDisciplinasEmCurso(int idCurso, [FromBody] IEnumerable<int> idDisciplinas)
+        {
+            var curso = await _context.Cursos.FirstOrDefaultAsync(p => p.CursoId == idCurso);
+            List<Disciplina> disciplinasList = new List<Disciplina>();
+
+            foreach(var item in idDisciplinas)
+            {
+                var disciplinaById = await _context.Disciplinas.FirstOrDefaultAsync(p => p.DisciplinaId == item);
+                disciplinasList.Add(disciplinaById);
+            }
+
+            foreach(var item in  disciplinasList)
+            {
+                curso.Disciplinas.Add(item);
+                
+            }
+            await _context.SaveChangesAsync();
+            return Ok(curso);
+        }
+
     }
 }
