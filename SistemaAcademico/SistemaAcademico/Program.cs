@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Services;
+using SistemaAcademico.Services.Interfaces;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,9 @@ builder.Services.AddControllers().AddJsonOptions(options
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
+builder.Services.AddScoped<ICategoria, CategoriaService>();
 
 var mysqlConnectionString = builder.Configuration.GetConnectionString("ConexaoMysql");
 builder.Services.AddDbContext<SistemaAcademicoDbContext>(options =>

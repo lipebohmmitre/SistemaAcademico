@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Services.Interfaces;
 
 namespace SistemaAcademico.Controllers
 {
@@ -11,11 +12,11 @@ namespace SistemaAcademico.Controllers
     public class CategoriaController : ControllerBase
     {
 
-        private readonly SistemaAcademicoDbContext _context;
+        private readonly ICategoria _categoria;
 
-        public CategoriaController(SistemaAcademicoDbContext context)
+        public CategoriaController(ICategoria categoria)
         {
-            _context = context;
+            _categoria = categoria;
         }
 
 
@@ -23,18 +24,15 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categoria>>> Get()
         {
-            // Utilizando o método AsNoTracking para ganho de performace
-            return await _context.Categorias.AsNoTracking().ToListAsync();
+            var categoriaList = await _categoria.Get();
+            return Ok(categoriaList);
         }
 
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Categoria>> GetById(int id)
         {
-            var categoria = await _context.Categorias.FirstOrDefaultAsync(p => p.CategoriaId == id);
-
-            if (categoria is null) return BadRequest("Categoria procurada pelo Id: " + id + " Está nula");
-
+            var categoria = await _categoria.GetById(id);
             return Ok(categoria);
         }
 
@@ -42,10 +40,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet("subcategoria/{id}")]
         public async Task<ActionResult<Categoria>> GetCategoriaAndSubCategorias(int id)
         {
-            var categoriaAndSub = await _context.Categorias.Include(p => p.SubCategorias).AsNoTracking().FirstOrDefaultAsync(p => p.CategoriaId == id);
-
-            if (categoriaAndSub is null) return BadRequest("Não Encontrado");
-
+            var categoriaAndSub = await _categoria.GetCategoriaAndSubCategoria(id);
             return Ok(categoriaAndSub);
         }
 
@@ -53,27 +48,16 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<Categoria>> Create([FromBody] Categoria categoria)
         {
-            await _context.Categorias.AddAsync(categoria);
-            await _context.SaveChangesAsync();
-
-            return Created("", categoria);
+            var categoriaReturn = await _categoria.Create(categoria);
+            return Created("", categoriaReturn);
         }
 
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Categoria>> Update(int id, [FromBody] Categoria categoria)
         {
-            var categoriaById = await _context.Categorias.FirstOrDefaultAsync(p => p.CategoriaId == id);
-
-            if (categoriaById is null) return BadRequest("Categoria procurada pelo Id: " + id + " Está nula");
-
-            categoriaById.Nome = categoria.Nome;
-            categoriaById.Descricao = categoria.Descricao;
-
-            _context.Categorias.Update(categoriaById);
-            await _context.SaveChangesAsync();
-
-            return Ok(categoriaById);
+            var categoriaReturn = await _categoria.Update(id, categoria);
+            return Ok(categoriaReturn);
         }
 
 
@@ -81,14 +65,8 @@ namespace SistemaAcademico.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var categoriaById = await _context.Categorias.FindAsync(id);
-
-            if (categoriaById is null) return BadRequest(false);
-
-            _context.Categorias.Remove(categoriaById);
-            await _context.SaveChangesAsync();
-
-            return Ok(true);
+            var deleted = await _categoria.Delete(id);
+            return Ok(deleted);
         }
 
     }
