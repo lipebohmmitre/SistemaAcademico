@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Services.Interfaces;
 
 namespace SistemaAcademico.Controllers
 {
@@ -11,11 +12,11 @@ namespace SistemaAcademico.Controllers
     public class SubCategoriaController : ControllerBase
     {
 
-        private readonly SistemaAcademicoDbContext _context;
+        private readonly ISubCategoria _subCategoria;
 
-        public SubCategoriaController(SistemaAcademicoDbContext context)
+        public SubCategoriaController(ISubCategoria subCategoria)
         {
-            _context = context;
+            _subCategoria = subCategoria;
         }
 
 
@@ -23,18 +24,15 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SubCategoria>>> Get()
         {
-            // Utilizando o método AsNoTracking para ganho de performace
-            return await _context.SubCategorias.AsNoTracking().ToListAsync();
+            var subCategorias = await _subCategoria.Get();
+            return Ok(subCategorias);
         }
 
 
         [HttpGet("{id}")]
         public async Task<ActionResult<SubCategoria>> GetById(int id)
         {
-            var subCategoria = await _context.SubCategorias.AsNoTracking().FirstOrDefaultAsync(p => p.SubCategoriaId == id);
-
-            if (subCategoria is null) return BadRequest("A SubCategoria de Id: " + id + " está nula");
-
+            var subCategoria = await _subCategoria.GetById(id);
             return Ok(subCategoria);
         }
 
@@ -42,10 +40,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet("cursos/{id}")]
         public async Task<ActionResult<SubCategoria>> GetSubCategoriaAndCurso(int id)
         {
-            var subCategoria = await _context.SubCategorias.Include(p => p.Cursos).SingleOrDefaultAsync(p => p.SubCategoriaId == id);
-
-            if (subCategoria is null) return BadRequest("Está nulo");
-
+            var subCategoria = await _subCategoria.GetSubCategoriaAndCurso(id);
             return Ok(subCategoria);
         }
 
@@ -53,42 +48,24 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<SubCategoria>> Create([FromBody] SubCategoria subCategoria)
         {
-            await _context.SubCategorias.AddAsync(subCategoria);
-            await _context.SaveChangesAsync();
-
-            return Created("", subCategoria);
+            var subCategorias = await _subCategoria.Create(subCategoria);
+            return Created("", subCategorias);
         }
 
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<SubCategoria>> Update(int id, [FromBody] SubCategoria subCategoria)
         {
-            var subCategoriaById = await _context.SubCategorias.FindAsync(id);
-
-            if(subCategoriaById is null) return BadRequest("A SubCategoria de Id: " + id + " está nula");
-
-            subCategoriaById.Nome = subCategoria.Nome;
-            subCategoriaById.Descricao = subCategoria.Descricao;
-            subCategoriaById.CategoriaId = subCategoria.CategoriaId;
-
-            _context.SubCategorias.Update(subCategoriaById);
-            await _context.SaveChangesAsync();
-
-            return Ok(subCategoriaById);
+            var subCategorias = await _subCategoria.Update(id, subCategoria);
+            return Ok(subCategorias);
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var subCategoria = await _context.SubCategorias.FindAsync(id);
-
-            if (subCategoria is null) return BadRequest(false);
-
-            _context.SubCategorias.Remove(subCategoria);
-            await _context.SaveChangesAsync();
-
-            return Ok(true);
+            var subCategorias = await _subCategoria.Delete(id);
+            return Ok(subCategorias);
         }
 
 

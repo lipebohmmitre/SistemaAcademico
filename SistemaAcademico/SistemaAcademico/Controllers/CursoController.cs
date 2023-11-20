@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Services.Interfaces;
 
 namespace SistemaAcademico.Controllers
 {
@@ -11,11 +12,11 @@ namespace SistemaAcademico.Controllers
     public class CursoController : ControllerBase
     {
 
-        private readonly SistemaAcademicoDbContext _context;
+        private readonly ICurso _curso;
 
-        public CursoController(SistemaAcademicoDbContext context)
+        public CursoController(ICurso curso)
         {
-            _context = context;   
+            _curso = curso;   
         }
 
 
@@ -23,7 +24,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Curso>>> Get()
         {
-            var cursos = await _context.Cursos.AsNoTracking().ToListAsync();
+            var cursos = await _curso.Get();
             return Ok(cursos);
         }
 
@@ -31,10 +32,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Curso>> GetById(int id)
         {
-            var curso = await _context.Cursos.AsNoTracking().FirstOrDefaultAsync(p => p.CursoId == id);
-
-            if (curso is null) return BadRequest("Curso nulo");
-
+            var curso = await _curso.GetById(id);
             return Ok(curso);
         }
 
@@ -42,27 +40,15 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<Curso>> Create([FromBody] Curso curso)
         {
-            await _context.Cursos.AddAsync(curso);
-            await _context.SaveChangesAsync();
-
-            return Created("", curso);
+            var cursoReturn = await _curso.Create(curso);
+            return Created("", cursoReturn);
         }
 
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<Curso>> Update(int id, [FromBody] Curso curso)
         {
-            var cursoById = await _context.Cursos.FindAsync(id);
-
-            if (cursoById is null) return BadRequest("Curso nulo");
-
-            cursoById.Nome = curso.Nome;
-            cursoById.Descricao = curso.Descricao;
-            cursoById.SubCategoriaId = curso.SubCategoriaId;
-
-            _context.Cursos.Update(cursoById);
-            await _context.SaveChangesAsync();
-
+            var cursoById = await _curso.Update(id, curso);
             return Ok(cursoById);
         }
 
@@ -70,11 +56,8 @@ namespace SistemaAcademico.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var curso = await _context.Cursos.FindAsync(id);
-
-            if (curso is null) return BadRequest(false);
-
-            return Ok(true);
+            var curso = await _curso.Delete(id);
+            return Ok(curso);
         }
 
     }

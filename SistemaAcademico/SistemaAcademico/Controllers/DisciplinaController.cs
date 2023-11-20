@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Services.Interfaces;
 
 namespace SistemaAcademico.Controllers
 {
@@ -11,11 +12,11 @@ namespace SistemaAcademico.Controllers
     public class DisciplinaController : ControllerBase
     {
 
-        private readonly SistemaAcademicoDbContext _context;
+        private readonly IDisciplina _disciplina;
 
-        public DisciplinaController(SistemaAcademicoDbContext context)
+        public DisciplinaController(IDisciplina disciplina)
         {
-            _context = context;
+            _disciplina = disciplina;
         }
 
 
@@ -23,17 +24,15 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Disciplina>>> Get()
         {
-            return await _context.Disciplinas.AsNoTracking().ToListAsync();
+            var disciplinas = await _disciplina.Get();
+            return Ok(disciplinas);
         }
 
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Disciplina>> GetById(int id)
         {
-            var disciplina = await _context.Disciplinas.FirstOrDefaultAsync(p => p.DisciplinaId == id);
-
-            if(disciplina is null) return NotFound("Está nula");
-
+            var disciplina = await _disciplina.GetById(id);
             return Ok(disciplina);
         }
 
@@ -41,26 +40,15 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<Disciplina>> Create([FromBody] Disciplina disciplina)
         {
-            await _context.Disciplinas.AddAsync(disciplina);
-            await _context.SaveChangesAsync();
-
-            return Created("", disciplina);
+            var disciplinaReturn = await _disciplina.Create(disciplina);
+            return Created("", disciplinaReturn);
         }
 
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<Disciplina>> Update(int id, [FromBody] Disciplina disciplina)
         {
-            var disciplinaById = await _context.Disciplinas.FindAsync(id);
-
-            if (disciplinaById is null) return BadRequest("Está nulo");
-
-            disciplinaById.Nome = disciplina.Nome;
-            disciplinaById.CargaHoraria = disciplina.CargaHoraria;
-            disciplinaById.TipoDisciplina = disciplina.TipoDisciplina;
-
-            _context.Disciplinas.Update(disciplinaById);
-            await _context.SaveChangesAsync();
+            var disciplinaById = await _disciplina.Update(id, disciplina);
 
             return Ok(disciplinaById);
         }
@@ -69,18 +57,28 @@ namespace SistemaAcademico.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var disciplina = await _context.Disciplinas.FindAsync(id);
-
-            if (disciplina is null) return BadRequest(false);
-
-            _context.Disciplinas.Remove(disciplina);
-            await _context.SaveChangesAsync();
-
-            return Ok(true);
+            var disciplina = await _disciplina.Delete(id);
+            return Ok(disciplina);
         }
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
 
         // Funcionou, porem quando tentei adicionar 1, 1 ocorreu erro de chaves iguais, olhar depois
         [HttpPatch("{idDisciplina}/{idCurso}")]
@@ -119,6 +117,6 @@ namespace SistemaAcademico.Controllers
             await _context.SaveChangesAsync();
             return Ok(curso);
         }
-
+        */
     }
 }

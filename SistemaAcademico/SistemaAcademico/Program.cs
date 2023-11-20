@@ -18,6 +18,12 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<ICategoria, CategoriaService>();
+builder.Services.AddScoped<ISubCategoria, SubCategoriaService>();
+builder.Services.AddScoped<ICurso, CursoService>();
+builder.Services.AddScoped<IDisciplina, DisciplinaService>();
+builder.Services.AddScoped<ICursoDisciplina, CursoDisciplinaService>();
+
+
 
 var mysqlConnectionString = builder.Configuration.GetConnectionString("ConexaoMysql");
 builder.Services.AddDbContext<SistemaAcademicoDbContext>(options =>
