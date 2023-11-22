@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaAcademico.Models;
+using SistemaAcademico.Repository.InterfacesRepository;
 
 namespace SistemaAcademico.Services.Interfaces
 {
-    public interface ICursoDisciplina
+    public interface ICursoDisciplina : ICursoDisciplinaRepository
     {
-        Task<Curso> GetCursoAndDisciplina(int idCurso);
-        Task<Disciplina> AdicionarCursoNaDisciplina(int idDisciplina, int idCurso);
-        Task<Curso> AdicionarListaDisciplinasEmCurso(int idCurso, [FromBody] IEnumerable<int> idDisciplinas);
     }
 }

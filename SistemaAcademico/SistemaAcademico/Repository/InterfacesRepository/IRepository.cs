@@ -1,13 +1,14 @@
-﻿using System.Linq.Expressions;
+﻿using SistemaAcademico.Models;
+using System.Linq.Expressions;
 
 namespace SistemaAcademico.Repository.InterfacesRepository
 {
     public interface IRepository<T>
     {
-        IEnumerable<T> Get();
-        T GetById(Expression<Func<T, bool>> predicated);
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        Task<IEnumerable<T>> GetAsync();
+        Task<T> GetByIdAsync(int id);
+        Task<T> AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task DeleteAsync(int id);
     }
 }

@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaAcademico.Models;
+using SistemaAcademico.Repository.InterfacesRepository;
 
 namespace SistemaAcademico.Services.Interfaces
 {
-    public interface IDisciplina
+    public interface IDisciplina : IDisciplinaRepository
     {
-        Task<IEnumerable<Disciplina>> Get();
-        Task<Disciplina> GetById(int id);
-        Task<Disciplina> Create(Disciplina disciplina);
-        Task<Disciplina> Update(int id, Disciplina disciplina);
-        Task<bool> Delete(int id);
     }
 }
