@@ -59,6 +59,18 @@ namespace SistemaAcademico.Controllers
             return Created("", dto);
         }
 
+        [HttpPost("ListaDisciplinas")]
+        public async Task<ActionResult<IEnumerable<DisciplinaDTO>>> CreateListDisciplina([FromBody] List<DisciplinaDTO> disciplinaList)
+        {
+            var disciplinas = _mapper.Map<List<Disciplina>>(disciplinaList);
+
+            var listDisciplinasReturn = await _disciplina.AddListDisciplinas(disciplinas);
+
+            var dto = _mapper.Map<List<DisciplinaDTO>>(listDisciplinasReturn);
+
+            return Created("", dto);
+        }
+
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<DisciplinaDTO>> Update(int id, [FromBody] DisciplinaDTO disciplinaDto)

@@ -6,5 +6,6 @@ namespace SistemaAcademico.Services.Interfaces
 {
     public interface IDisciplina : IDisciplinaRepository
     {
+        Task<IEnumerable<Disciplina>> AddListDisciplinas(IEnumerable<Disciplina> disciplinaList);
     }
 }

@@ -11,5 +11,16 @@ namespace SistemaAcademico.Services
         public DisciplinaService(SistemaAcademicoDbContext context) : base(context)
         {
         }
+
+        public async Task<IEnumerable<Disciplina>> AddListDisciplinas(IEnumerable<Disciplina> disciplinaList)
+        {
+
+            foreach(var item in disciplinaList)
+            {
+                await base.AddAsync(item);
+            }
+
+            return disciplinaList;
+        }
     }
 }
