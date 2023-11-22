@@ -24,7 +24,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Categoria>>> Get()
         {
-            var categoriaList = await _categoria.Get();
+            var categoriaList = await _categoria.GetAsync();
             return Ok(categoriaList);
         }
 
@@ -32,32 +32,37 @@ namespace SistemaAcademico.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Categoria>> GetById(int id)
         {
-            var categoria = await _categoria.GetById(id);
+            var categoria = await _categoria.GetByIdAsync(id);
             return Ok(categoria);
         }
 
-
+        
         [HttpGet("subcategoria/{id}")]
         public async Task<ActionResult<Categoria>> GetCategoriaAndSubCategorias(int id)
         {
             var categoriaAndSub = await _categoria.GetCategoriaAndSubCategoria(id);
             return Ok(categoriaAndSub);
         }
-
+        
 
         [HttpPost]
         public async Task<ActionResult<Categoria>> Create([FromBody] Categoria categoria)
         {
-            var categoriaReturn = await _categoria.Create(categoria);
-            return Created("", categoriaReturn);
+            await _categoria.AddAsync(categoria);
+            return Created("", categoria);
         }
 
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Categoria>> Update(int id, [FromBody] Categoria categoria)
         {
-            var categoriaReturn = await _categoria.Update(id, categoria);
-            return Ok(categoriaReturn);
+            var categoriaToUpdate = await _categoria.GetByIdAsync(id);
+
+            categoriaToUpdate.Nome = categoria.Nome;
+            categoriaToUpdate.Descricao = categoria.Descricao;
+
+            await _categoria.UpdateAsync(categoriaToUpdate);
+            return Ok(categoria);
         }
 
 
@@ -65,8 +70,8 @@ namespace SistemaAcademico.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var deleted = await _categoria.Delete(id);
-            return Ok(deleted);
+            await _categoria.DeleteAsync(id);
+            return Ok();
         }
 
     }

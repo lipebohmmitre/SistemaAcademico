@@ -24,7 +24,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Curso>>> Get()
         {
-            var cursos = await _curso.Get();
+            var cursos = await _curso.GetAsync();
             return Ok(cursos);
         }
 
@@ -32,7 +32,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Curso>> GetById(int id)
         {
-            var curso = await _curso.GetById(id);
+            var curso = await _curso.GetByIdAsync(id);
             return Ok(curso);
         }
 
@@ -40,24 +40,30 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<Curso>> Create([FromBody] Curso curso)
         {
-            var cursoReturn = await _curso.Create(curso);
-            return Created("", cursoReturn);
+            await _curso.AddAsync(curso);
+            return Created("", curso);
         }
 
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<Curso>> Update(int id, [FromBody] Curso curso)
         {
-            var cursoById = await _curso.Update(id, curso);
-            return Ok(cursoById);
+            var cursoToUpdate = await _curso.GetByIdAsync(id);
+
+            cursoToUpdate.Nome = curso.Nome;
+            cursoToUpdate.Descricao = curso.Descricao;
+            cursoToUpdate.SubCategoriaId = curso.SubCategoriaId;
+
+            await _curso.UpdateAsync(cursoToUpdate);
+            return Ok(cursoToUpdate);
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var curso = await _curso.Delete(id);
-            return Ok(curso);
+            await _curso.DeleteAsync(id);
+            return Ok();
         }
 
     }

@@ -24,7 +24,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SubCategoria>>> Get()
         {
-            var subCategorias = await _subCategoria.Get();
+            var subCategorias = await _subCategoria.GetAsync();
             return Ok(subCategorias);
         }
 
@@ -32,7 +32,7 @@ namespace SistemaAcademico.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<SubCategoria>> GetById(int id)
         {
-            var subCategoria = await _subCategoria.GetById(id);
+            var subCategoria = await _subCategoria.GetByIdAsync(id);
             return Ok(subCategoria);
         }
 
@@ -48,24 +48,29 @@ namespace SistemaAcademico.Controllers
         [HttpPost]
         public async Task<ActionResult<SubCategoria>> Create([FromBody] SubCategoria subCategoria)
         {
-            var subCategorias = await _subCategoria.Create(subCategoria);
-            return Created("", subCategorias);
+            await _subCategoria.AddAsync(subCategoria);
+            return Created("", subCategoria);
         }
 
 
         [HttpPatch("{id}")]
         public async Task<ActionResult<SubCategoria>> Update(int id, [FromBody] SubCategoria subCategoria)
         {
-            var subCategorias = await _subCategoria.Update(id, subCategoria);
-            return Ok(subCategorias);
+            var subCategoriasToUpdate = await _subCategoria.GetByIdAsync(id);
+
+            subCategoriasToUpdate.Nome = subCategoria.Nome;
+            subCategoriasToUpdate.Descricao = subCategoria.Descricao;
+
+            await _subCategoria.UpdateAsync(subCategoriasToUpdate);
+            return Ok(subCategoriasToUpdate);
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<bool>> Delete(int id)
         {
-            var subCategorias = await _subCategoria.Delete(id);
-            return Ok(subCategorias);
+            await _subCategoria.DeleteAsync(id);
+            return Ok();
         }
 
 

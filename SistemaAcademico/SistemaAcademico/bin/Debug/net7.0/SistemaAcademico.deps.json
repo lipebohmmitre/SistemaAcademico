@@ -9,6 +9,7 @@
       "SistemaAcademico/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "7.0.13",
+          "Microsoft.EntityFrameworkCore": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.14",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0",

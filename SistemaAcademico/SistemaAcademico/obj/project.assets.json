@@ -1475,6 +1475,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Microsoft.AspNetCore.OpenApi >= 7.0.13",
+      "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.14",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
@@ -1482,19 +1483,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\felip\\.nuget\\packages\\": {}
+    "C:\\Users\\Usuário\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+      "projectUniqueName": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
       "projectName": "SistemaAcademico",
-      "projectPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
-      "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\obj\\",
+      "projectPath": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+      "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuário\\Desktop\\Projetos\\SistemaAcademico\\SistemaAcademico\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1523,6 +1524,10 @@
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[7.0.13, )"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.14, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -1564,7 +1569,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
