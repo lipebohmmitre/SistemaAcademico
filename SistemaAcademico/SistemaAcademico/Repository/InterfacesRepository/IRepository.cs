@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using SistemaAcademico.Models;
+using System.Linq.Expressions;
 
 namespace SistemaAcademico.Repository.InterfacesRepository
 {
@@ -6,7 +7,7 @@ namespace SistemaAcademico.Repository.InterfacesRepository
     {
         Task<IEnumerable<T>> GetAsync();
         Task<T> GetByIdAsync(int id);
-        Task AddAsync(T entity);
+        Task<T> AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(int id);
     }

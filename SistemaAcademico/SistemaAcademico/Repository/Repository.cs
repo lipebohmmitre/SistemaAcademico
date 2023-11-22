@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
 using SistemaAcademico.Repository.InterfacesRepository;
 using System.Linq.Expressions;
@@ -28,10 +29,11 @@ namespace SistemaAcademico.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task AddAsync(T entity)
+        public virtual async Task<T> AddAsync(T entity)
         {
-           await _context.Set<T>().AddAsync(entity);
-           await _context.SaveChangesAsync();
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAsync(int id)

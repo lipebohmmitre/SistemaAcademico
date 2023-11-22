@@ -63,7 +63,9 @@ namespace SistemaAcademico.Controllers
         {
             var categoria = _mapper.Map<Categoria>(categoriaDto);
 
-            await _categoria.AddAsync(categoria);
+            var retornoAdd = await _categoria.AddAsync(categoria);
+
+            if (retornoAdd is null) return BadRequest("Categoria já cadastrada");
 
             var categoriaDTO = _mapper.Map<CategoriaDTO>(categoria);
 
