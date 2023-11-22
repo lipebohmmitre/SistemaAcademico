@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.Models.Context;
+using SistemaAcademico.Repository;
+using SistemaAcademico.Repository.InterfacesRepository;
 using SistemaAcademico.Services;
 using SistemaAcademico.Services.Interfaces;
 using System.Text.Json.Serialization;

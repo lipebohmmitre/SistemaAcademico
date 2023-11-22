@@ -18,7 +18,7 @@ namespace SistemaAcademico.Repository
 
 
 
-        public virtual async Task<IEnumerable<T>> GetAsync()
+        public async Task<IEnumerable<T>> GetAsync()
         {
             return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
@@ -28,20 +28,20 @@ namespace SistemaAcademico.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public virtual async Task AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
            await _context.Set<T>().AddAsync(entity);
            await _context.SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var entityToDeleted = await _context.Set<T>().FindAsync(id);
             _context.Set<T>().Remove(entityToDeleted);
             await _context.SaveChangesAsync();
         }
 
-        public virtual async Task UpdateAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _context.Set<T>().Update(entity);
             await _context.SaveChangesAsync();
