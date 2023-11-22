@@ -20,7 +20,7 @@ namespace SistemaAcademico.Repository
             return curso;
         }
 
-        public async Task<Disciplina> AdicionarCursoNaDisciplina(int idDisciplina, int idCurso)
+        public async Task<Curso> AdicionarDisciplinaNoCurso(int idDisciplina, int idCurso)
         {
             Disciplina disciplina = await _context.Disciplinas.FirstOrDefaultAsync(p => p.DisciplinaId == idDisciplina);
             Curso curso = await _context.Cursos.FirstOrDefaultAsync(p => p.CursoId == idCurso);
@@ -30,7 +30,7 @@ namespace SistemaAcademico.Repository
             disciplina.Cursos.Add(curso);
             await _context.SaveChangesAsync();
 
-            return disciplina;
+            return curso;
         }
 
         public async Task<Curso> AdicionarListaDisciplinasEmCurso(int idCurso, [FromBody] IEnumerable<int> idDisciplinas)

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SistemaAcademico.DTOs;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
 using SistemaAcademico.Services.Interfaces;
@@ -13,56 +15,77 @@ namespace SistemaAcademico.Controllers
     {
 
         private readonly ISubCategoria _subCategoria;
+        private readonly IMapper _mapper;
 
-        public SubCategoriaController(ISubCategoria subCategoria)
+        public SubCategoriaController(ISubCategoria subCategoria, IMapper mapper)
         {
             _subCategoria = subCategoria;
+            _mapper = mapper;
         }
 
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SubCategoria>>> Get()
+        public async Task<ActionResult<IEnumerable<SubCategoriaDTO>>> Get()
         {
             var subCategorias = await _subCategoria.GetAsync();
-            return Ok(subCategorias);
+            var dto = _mapper.Map<List<SubCategoriaDTO>>(subCategorias);
+            return Ok(dto);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<SubCategoria>> GetById(int id)
+        public async Task<ActionResult<SubCategoriaDTO>> GetById(int id)
         {
             var subCategoria = await _subCategoria.GetByIdAsync(id);
-            return Ok(subCategoria);
+
+            if (subCategoria is null) return BadRequest("Não Encontrado");
+
+            var dto = _mapper.Map<SubCategoriaDTO>(subCategoria);
+
+            return Ok(dto);
         }
 
 
         [HttpGet("cursos/{id}")]
-        public async Task<ActionResult<SubCategoria>> GetSubCategoriaAndCurso(int id)
+        public async Task<ActionResult<SubCategoriaAndCursosDTO>> GetSubCategoriaAndCurso(int id)
         {
             var subCategoria = await _subCategoria.GetSubCategoriaAndCurso(id);
-            return Ok(subCategoria);
+
+            var dto = _mapper.Map<SubCategoriaAndCursosDTO>(subCategoria);
+
+            return Ok(dto);
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<SubCategoria>> Create([FromBody] SubCategoria subCategoria)
+        public async Task<ActionResult<SubCategoriaDTO>> Create([FromBody] SubCategoriaDTO subCategoriaDto)
         {
+            var subCategoria = _mapper.Map<SubCategoria>(subCategoriaDto);
+
             await _subCategoria.AddAsync(subCategoria);
-            return Created("", subCategoria);
+
+            var dto = _mapper.Map<SubCategoriaDTO>(subCategoria);
+
+            return Created("", dto);
         }
 
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<SubCategoria>> Update(int id, [FromBody] SubCategoria subCategoria)
+        public async Task<ActionResult<SubCategoriaDTO>> Update(int id, [FromBody] SubCategoriaDTO subCategoriaDto)
         {
             var subCategoriasToUpdate = await _subCategoria.GetByIdAsync(id);
 
-            subCategoriasToUpdate.Nome = subCategoria.Nome;
-            subCategoriasToUpdate.Descricao = subCategoria.Descricao;
+
+
+            subCategoriasToUpdate.Nome = subCategoriaDto.Nome;
+            subCategoriasToUpdate.Descricao = subCategoriaDto.Descricao;
 
             await _subCategoria.UpdateAsync(subCategoriasToUpdate);
-            return Ok(subCategoriasToUpdate);
+
+            var dto = _mapper.Map<SubCategoriaDTO>(subCategoriasToUpdate);
+
+            return Ok(dto);
         }
 
 

@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SistemaAcademico.DTOs;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
 using SistemaAcademico.Services.Interfaces;
@@ -13,50 +15,65 @@ namespace SistemaAcademico.Controllers
     {
 
         private readonly IDisciplina _disciplina;
+        private readonly IMapper _mapper;
 
-        public DisciplinaController(IDisciplina disciplina)
+        public DisciplinaController(IDisciplina disciplina, IMapper mapper)
         {
             _disciplina = disciplina;
+            _mapper = mapper;
         }
 
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Disciplina>>> Get()
+        public async Task<ActionResult<IEnumerable<DisciplinaDTO>>> Get()
         {
             var disciplinas = await _disciplina.GetAsync();
-            return Ok(disciplinas);
+
+            var dto = _mapper.Map<List<DisciplinaDTO>>(disciplinas);
+
+            return Ok(dto);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Disciplina>> GetById(int id)
+        public async Task<ActionResult<DisciplinaDTO>> GetById(int id)
         {
             var disciplina = await _disciplina.GetByIdAsync(id);
-            return Ok(disciplina);
+
+            var dto = _mapper.Map<DisciplinaDTO>(disciplina);
+
+            return Ok(dto);
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<Disciplina>> Create([FromBody] Disciplina disciplina)
+        public async Task<ActionResult<DisciplinaDTO>> Create([FromBody] DisciplinaDTO disciplinaDto)
         {
-           await _disciplina.AddAsync(disciplina);
-            return Created("", disciplina);
+            var disciplina = _mapper.Map<Disciplina>(disciplinaDto);
+
+            await _disciplina.AddAsync(disciplina);
+
+            var dto = _mapper.Map<DisciplinaDTO>(disciplina);
+
+            return Created("", dto);
         }
 
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Disciplina>> Update(int id, [FromBody] Disciplina disciplina)
+        public async Task<ActionResult<DisciplinaDTO>> Update(int id, [FromBody] DisciplinaDTO disciplinaDto)
         {
             var disciplinaToUpdate = await _disciplina.GetByIdAsync(id);
 
-            disciplinaToUpdate.Nome = disciplina.Nome;
-            disciplinaToUpdate.TipoDisciplina = disciplina.TipoDisciplina;
-            disciplinaToUpdate.CargaHoraria = disciplina.CargaHoraria;
+            disciplinaToUpdate.Nome = disciplinaDto.Nome;
+            disciplinaToUpdate.TipoDisciplina = disciplinaDto.TipoDisciplina;
+            disciplinaToUpdate.CargaHoraria = disciplinaDto.CargaHoraria;
 
             await _disciplina.UpdateAsync(disciplinaToUpdate);
 
-            return Ok(disciplinaToUpdate);
+            var dto = _mapper.Map<DisciplinaDTO>(disciplinaToUpdate);
+
+            return Ok(dto);
         }
 
 

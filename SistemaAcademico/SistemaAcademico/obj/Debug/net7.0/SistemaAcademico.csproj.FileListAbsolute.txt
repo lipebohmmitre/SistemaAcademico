@@ -127,3 +127,5 @@ C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\obj\De
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\SistemaAcademico.pdb
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\SistemaAcademico.genruntimeconfig.cache
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\ref\SistemaAcademico.dll
+C:\Users\Usuário\Desktop\Projetos\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Usuário\Desktop\Projetos\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

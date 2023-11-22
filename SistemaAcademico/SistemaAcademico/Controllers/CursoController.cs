@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SistemaAcademico.DTOs;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
 using SistemaAcademico.Services.Interfaces;
@@ -13,49 +15,68 @@ namespace SistemaAcademico.Controllers
     {
 
         private readonly ICurso _curso;
+        private readonly IMapper _mapper;
 
-        public CursoController(ICurso curso)
+        public CursoController(ICurso curso, IMapper mapper)
         {
-            _curso = curso;   
+            _curso = curso;
+            _mapper = mapper;
         }
 
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Curso>>> Get()
+        public async Task<ActionResult<IEnumerable<CursoDTO>>> Get()
         {
             var cursos = await _curso.GetAsync();
-            return Ok(cursos);
+
+            var dto = _mapper.Map<List<CursoDTO>>(cursos);
+
+            return Ok(dto);
         }
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Curso>> GetById(int id)
+        public async Task<ActionResult<CursoDTO>> GetById(int id)
         {
             var curso = await _curso.GetByIdAsync(id);
-            return Ok(curso);
+
+            if (curso is null) return BadRequest("Não Encontrado");
+
+            var dto = _mapper.Map<CursoDTO>(curso);
+
+            return Ok(dto);
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<Curso>> Create([FromBody] Curso curso)
+        public async Task<ActionResult<CursoDTO>> Create([FromBody] CursoDTO cursoDto)
         {
+
+            var curso = _mapper.Map<Curso>(cursoDto);
+
             await _curso.AddAsync(curso);
-            return Created("", curso);
+
+            var dto = _mapper.Map<CursoDTO>(curso);
+
+            return Created("", dto);
         }
 
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<Curso>> Update(int id, [FromBody] Curso curso)
+        public async Task<ActionResult<CursoDTO>> Update(int id, [FromBody] CursoDTO cursoDto)
         {
             var cursoToUpdate = await _curso.GetByIdAsync(id);
 
-            cursoToUpdate.Nome = curso.Nome;
-            cursoToUpdate.Descricao = curso.Descricao;
-            cursoToUpdate.SubCategoriaId = curso.SubCategoriaId;
+            cursoToUpdate.Nome = cursoDto.Nome;
+            cursoToUpdate.Descricao = cursoDto.Descricao;
+            cursoToUpdate.SubCategoriaId = cursoDto.SubCategoriaId;
 
             await _curso.UpdateAsync(cursoToUpdate);
-            return Ok(cursoToUpdate);
+
+            var dto = _mapper.Map<CursoDTO>(cursoToUpdate);
+
+            return Ok(dto);
         }
 
 
