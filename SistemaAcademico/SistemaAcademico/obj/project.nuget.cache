@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vqE8KJ5XhELBbVsZndsyz/Ivdwnal07ByfZZ4LuuTGcRnE01L7U1rZsCMIQetoo8AhSlAEYrVd5yUrBzDcSOug==",
+  "dgSpecHash": "XjjnphQUkkZZGAKgDv4nSej+I9FhK+Q/mmlx3HmC9ZsQiyCyBaIQb8gWf4NKZ45g8wb7h6TN/CoIdtNkzd9HfQ==",
   "success": true,
-  "projectFilePath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+  "projectFilePath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

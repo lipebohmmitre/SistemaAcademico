@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
+    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
   },
   "projects": {
-    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
+    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "projectUniqueName": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
         "projectName": "SistemaAcademico",
-        "projectPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "projectPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
         "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\obj\\",
+        "outputPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
