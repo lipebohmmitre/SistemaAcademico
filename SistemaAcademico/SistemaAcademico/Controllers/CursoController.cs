@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.DTOs;
+using SistemaAcademico.DTOs.DTOsExpecifics;
 using SistemaAcademico.Models;
 using SistemaAcademico.Models.Context;
 using SistemaAcademico.Services.Interfaces;
+using System.Runtime.InteropServices;
 
 namespace SistemaAcademico.Controllers
 {
@@ -48,6 +50,15 @@ namespace SistemaAcademico.Controllers
             return Ok(dto);
         }
 
+        [HttpGet("/cursosDetails")]
+        public async Task<ActionResult<IEnumerable<CursoAndSubCategoriaDTO>>> GetCursosDetails()
+        {
+            var cursosDetails = await _curso.GetCursosSubCategoriasAndCategorias();
+
+            var dto = _mapper.Map<List<CursoAndSubCategoriaDTO>>(cursosDetails);
+
+            return Ok(dto);
+        }
 
         [HttpPost]
         public async Task<ActionResult<CursoDTO>> Create([FromBody] CursoDTO cursoDto)

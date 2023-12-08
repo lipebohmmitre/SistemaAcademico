@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SistemaAcademico.DTOs.MappingProfile;
 using SistemaAcademico.Models.Context;
@@ -45,6 +46,11 @@ builder.Services.AddDbContext<SistemaAcademicoDbContext>(options =>
     options.UseMySql(mysqlConnectionString, ServerVersion.AutoDetect(mysqlConnectionString)));
 
 
+// Adição do Identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<SistemaAcademicoDbContext>()
+    .AddDefaultTokenProviders();
+
 
 
 var app = builder.Build();
@@ -59,7 +65,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllers();
 

@@ -6,10 +6,11 @@ using SistemaAcademico.Services.Interfaces;
 
 namespace SistemaAcademico.Services
 {
-    public class CursoService : Repository<Curso>, ICurso
+    public class CursoService : CursoRepository, ICurso
     {
         public CursoService(SistemaAcademicoDbContext context) : base(context)
         {
         }
+
     }
 }

@@ -176,3 +176,9 @@ C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\Sistem
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\SistemaAcademico.pdb
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\SistemaAcademico.genruntimeconfig.cache
 C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\obj\Debug\net7.0\ref\SistemaAcademico.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\CSharpProjects\SistemaAcademicoClone\SistemaAcademico\SistemaAcademico\SistemaAcademico\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

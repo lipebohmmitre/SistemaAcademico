@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaAcademico.Models.Context
 {
-    public class SistemaAcademicoDbContext : DbContext
+    public class SistemaAcademicoDbContext : IdentityDbContext
     {
         public SistemaAcademicoDbContext(DbContextOptions<SistemaAcademicoDbContext> options) : base(options) {}
 
