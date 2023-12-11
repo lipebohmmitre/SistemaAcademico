@@ -1,22 +1,29 @@
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descrição</th>
-      <th>Sub-Categoria</th>
-      <th>Categoria</th>
-      <th>Mais Informações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let curso of cursos">
-      <td>{{ curso.nome }}</td>
-      <td>{{ curso.descricao }}</td>
-      <td>{{ curso.subCategoria.nome }}</td>
-      <td>{{ curso.subCategoria.categoria.nome }}</td>
-      <td><button>Info</button></td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Sub-Categoria</th>
+        <th>Categoria</th>
+        <th>Mais Informações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos">
+        <td>{{ curso.nome }}</td>
+        <td>{{ curso.descricao }}</td>
+        <td>{{ curso.subCategoria.nome }}</td>
+        <td>{{ curso.subCategoria.categoria.nome }}</td>
+        <td><button (click)="mostrarComponente(curso.cursoId)">Info</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="mostrar">
+  <button (click)="fechar()">X</button>
+  <app-disciplina></app-disciplina>
+</div>
 
