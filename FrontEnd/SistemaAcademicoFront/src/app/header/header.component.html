@@ -1,0 +1,37 @@
+
+<div>
+
+  <p>
+    <mat-toolbar>
+      <span>Sistema Acadêmico</span>
+
+      <span>
+        <button mat-button color="primary" [matMenuTriggerFor]="appMenu" >Menu</button>
+
+        <mat-menu #appMenu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="subMenu">Front</button>
+          <button mat-menu-item>Back</button>
+        </mat-menu>
+
+        <mat-menu #subMenu="matMenu">
+          <button mat-menu-item>Angular</button>
+          <button mat-menu-item>React</button>
+          <button mat-menu-item>Vue</button>
+        </mat-menu>
+      </span>
+
+      <span>
+        <button mat-raised-button [mat-menu-trigger-for]="lazyMenu">VishWas</button>
+
+        <mat-menu #lazyMenu="matMenu">
+          <ng-template matMenuContent>
+            <button mat-menu-item>Settings</button>
+            <button mat-menu-item>Log Out</button>
+          </ng-template>
+        </mat-menu>
+      </span>
+    </mat-toolbar>
+  </p>
+
+</div>
+
