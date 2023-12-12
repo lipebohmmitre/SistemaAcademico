@@ -1,6 +1,12 @@
 
-
 <div>
+  <button mat-raised-button *ngIf="exibeDiv" (click)="exibirEsconderDivs()">Adicionar Uma Disciplina</button>
+  <button mat-raised-button color="primary" *ngIf="!exibeDiv" (click)="exibirEsconderDivs()">Adicionar Várias Disciplinas</button>
+</div>
+
+
+
+<div *ngIf="!exibeDiv">
 
   <form class="example-form" [formGroup]="vinculoCursoDisciplinaForm" (ngSubmit)="salvar()">
 
@@ -21,6 +27,26 @@
     </mat-form-field>
 
     <br>
+
+    <button mat-raised-button>Vincular</button>
+  </form>
+
+</div>
+
+
+
+<div *ngIf="exibeDiv">
+
+  <form class="example-form" [formGroup]="vinculoCursoDisciplinaListForm" (ngSubmit)="salvarList()">
+
+    <mat-form-field>
+      <mat-label>Curso</mat-label>
+      <select matNativeControl required formControlName="idCurso" [(ngModel)]="idCurso">
+        <option *ngFor="let curso of cursos" [ngValue]="curso.cursoId">{{ curso.nome }}</option>
+      </select>
+    </mat-form-field>
+
+
 
     <button mat-raised-button>Vincular</button>
   </form>

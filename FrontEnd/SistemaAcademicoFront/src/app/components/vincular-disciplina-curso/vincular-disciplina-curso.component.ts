@@ -5,15 +5,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisciplinaService } from '../../services/disciplina.service';
+import {MatListModule} from '@angular/material/list';
+
 
 
 @Component({
   selector: 'app-vincular-disciplina-curso',
   standalone: true,
-  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, NgFor, FormsModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule, NgFor, NgIf, FormsModule, ReactiveFormsModule, MatListModule],
   templateUrl: './vincular-disciplina-curso.component.html',
   styleUrl: './vincular-disciplina-curso.component.css'
 })
@@ -23,6 +25,9 @@ export class VincularDisciplinaCursoComponent {
   disciplinas: any[] = [];
   idCurso: number = 0;
   idDisciplina: number = 0;
+  idsDisciplinas: number[] = [];
+
+  exibeDiv: boolean = false;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -33,9 +38,14 @@ export class VincularDisciplinaCursoComponent {
 
   vinculoCursoDisciplinaForm = this.formBuilder.group({
     idCurso: 0,
-    idDisciplina: 0
+    idDisciplina: 0,
+    idsDisciplinas: []
   });
 
+  vinculoCursoDisciplinaListForm = this.formBuilder.group({
+    idCurso: 0,
+    idsDisciplinas: []
+  });
 
   ngOnInit(){
     this.buscaCursos();
@@ -65,4 +75,11 @@ export class VincularDisciplinaCursoComponent {
     });
   }
 
+  salvarList(){
+    console.log(this.vinculoCursoDisciplinaForm.value);
+  }
+
+  exibirEsconderDivs(){
+    this.exibeDiv = !this.exibeDiv;
+  }
 }
