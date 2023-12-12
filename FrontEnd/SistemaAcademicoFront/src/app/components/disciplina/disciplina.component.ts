@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { TrafegaDadosDisciplinasService } from './../services/trafega-dados-disciplinas.service';
+import { TrafegaDadosDisciplinasService } from './../../services/trafega-dados-disciplinas.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -18,6 +18,7 @@ export class DisciplinaComponent {
   ngOnInit(){
     this.trafegaDados.disciplinas$.subscribe(data => {
       this.disciplinas = data;
+      console.log("data: ", data);
     });
   }
 

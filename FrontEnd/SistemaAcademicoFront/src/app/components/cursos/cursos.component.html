@@ -1,0 +1,33 @@
+
+<div>
+
+  <section class="table__body">
+    <table>
+        <thead>
+            <tr>
+                <th> Nome <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Descrição <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Sub-Categoria <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Categoria <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Mais Informações <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let curso of cursos">
+              <td>{{ curso.nome }}</td>
+              <td>{{ curso.descricao }}</td>
+              <td>{{ curso.subCategoria.nome }}</td>
+              <td>{{ curso.subCategoria.categoria.nome }}</td>
+              <td><button (click)="mostrarComponente(curso.cursoId)" mat-raised-button color="accent">Info</button></td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+</div>
+
+<div *ngIf="mostrar" class="close-button-container">
+  <button (click)="fechar()" mat-raised-button color="warn">X</button>
+  <app-disciplina></app-disciplina>
+</div>
+
