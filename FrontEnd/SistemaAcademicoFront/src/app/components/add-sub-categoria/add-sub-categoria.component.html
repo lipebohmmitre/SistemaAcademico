@@ -1,0 +1,39 @@
+
+
+
+
+<div>
+
+  <form class="example-form" [formGroup]="cadastroFormSubCategoria" (ngSubmit)="salvar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome Sub-Categoria</mat-label>
+      <input type="text" matInput placeholder="Ex. Curso Adm" value="" formControlName="nome" [(ngModel)]="nome">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição da Sub-Categoria</mat-label>
+      <textarea type="text" matInput placeholder="Ex. Curso para capacitação..." formControlName="descricao" [(ngModel)]="descricao"></textarea>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+      <mat-label>Escolha a Categoria</mat-label>
+      <select matNativeControl required formControlName="categoriaId" [(ngModel)]="categoriaId">
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria.categoriaId">{{ categoria.nome }}</option>
+      </select>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button>Cadastrar</button>
+
+  </form>
+
+
+
+</div>
+

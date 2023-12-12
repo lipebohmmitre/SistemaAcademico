@@ -1,0 +1,22 @@
+
+<div>
+
+  <section class="table__body">
+    <table>
+        <thead>
+            <tr>
+                <th> Nome <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Descrição <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let categoria of categorias">
+              <td>{{ categoria.nome }}</td>
+              <td>{{ categoria.descricao }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+</div>
+

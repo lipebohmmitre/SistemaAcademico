@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
+    "C:\\Users\\Usuário\\Desktop\\Projeto\\Software\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {}
   },
   "projects": {
-    "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
+    "C:\\Users\\Usuário\\Desktop\\Projeto\\Software\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "projectUniqueName": "C:\\Users\\Usuário\\Desktop\\Projeto\\Software\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
         "projectName": "SistemaAcademico",
-        "projectPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
-        "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\CSharpProjects\\SistemaAcademicoClone\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\obj\\",
+        "projectPath": "C:\\Users\\Usuário\\Desktop\\Projeto\\Software\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico.csproj",
+        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuário\\Desktop\\Projeto\\Software\\SistemaAcademico\\SistemaAcademico\\SistemaAcademico\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -100,7 +100,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

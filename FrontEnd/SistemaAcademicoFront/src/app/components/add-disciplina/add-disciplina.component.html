@@ -1,0 +1,39 @@
+
+
+
+
+
+
+<div>
+
+  <form class="example-form" [formGroup]="cadastroFormDisciplinas" (ngSubmit)="salvar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome Disciplina</mat-label>
+      <input type="text" matInput placeholder="Ex. Introd a Adm" value="" formControlName="nome" [(ngModel)]="nome">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Carga Horária</mat-label>
+      <input type="number" matInput placeholder="Ex. 80" value="" formControlName="cargaHoraria" [(ngModel)]="cargaHoraria">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Tipo da Disciplina</mat-label>
+      <textarea type="text" matInput placeholder="Ex. AVA ou IESDE" formControlName="tipoDisciplina" [(ngModel)]="tipoDisciplina"></textarea>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button>Cadastrar</button>
+
+  </form>
+
+
+
+</div>
+

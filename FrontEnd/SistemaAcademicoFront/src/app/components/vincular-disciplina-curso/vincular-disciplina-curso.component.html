@@ -1,0 +1,28 @@
+
+
+<div>
+
+  <form class="example-form" [formGroup]="vinculoCursoDisciplinaForm" (ngSubmit)="salvar()">
+
+    <mat-form-field>
+      <mat-label>Curso</mat-label>
+      <select matNativeControl required formControlName="idCurso" [(ngModel)]="idCurso">
+        <option *ngFor="let curso of cursos" [ngValue]="curso.cursoId">{{ curso.nome }}</option>
+      </select>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
+      <mat-label>Disciplina</mat-label>
+      <select matNativeControl required formControlName="idDisciplina" [(ngModel)]="idDisciplina">
+        <option *ngFor="let disc of disciplinas" [ngValue]="disc.disciplinaId">{{ disc.nome }}</option>
+      </select>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button>Vincular</button>
+  </form>
+
+</div>

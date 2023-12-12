@@ -1,0 +1,24 @@
+
+<div>
+
+  <section class="table__body">
+    <table>
+        <thead>
+            <tr>
+                <th> Nome <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Carga Horária <span class="icon-arrow">&UpArrow;</span></th>
+                <th> Tipo da Disciplina <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dis of disciplinas">
+              <td>{{ dis.nome }}</td>
+              <td>{{ dis.cargaHoraria }}</td>
+              <td>{{ dis.tipoDisciplina }}</td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+</div>
+

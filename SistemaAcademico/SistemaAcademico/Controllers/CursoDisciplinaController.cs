@@ -36,7 +36,7 @@ namespace SistemaAcademico.Controllers
 
 
 
-        [HttpPatch("{idCurso}/{idDisciplina}")]
+        [HttpPost("{idCurso}/{idDisciplina}")]
         public async Task<ActionResult<CursoAndDiscplinaDTO>> AdicionarDisciplinaNoCurso(int idCurso, int idDisciplina)
         {
             var cursoDisciplina = await _cursoDisciplina.AdicionarDisciplinaNoCurso(idDisciplina, idCurso);
@@ -48,7 +48,7 @@ namespace SistemaAcademico.Controllers
 
 
  
-        [HttpPatch("listaDisciplinas/{idCurso}")]
+        [HttpPost("listaDisciplinas/{idCurso}")]
         public async Task<ActionResult<CursoAndDiscplinaDTO>> AdicionarListaDisciplinasEmCurso(int idCurso, [FromBody] IEnumerable<int> idDisciplinas)
         {
             var cursoDisciplina = await _cursoDisciplina.AdicionarListaDisciplinasEmCurso(idCurso, idDisciplinas);

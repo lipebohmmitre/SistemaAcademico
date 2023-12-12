@@ -1,0 +1,30 @@
+
+
+
+
+<div>
+
+  <form class="example-form" [formGroup]="cadastroCategoriaForm" (ngSubmit)="salvar()">
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome Categoria</mat-label>
+      <input type="text" matInput placeholder="Ex. Categoria Bacharelado" value="" formControlName="nome" [(ngModel)]="nome">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Descrição da Categoria</mat-label>
+      <textarea type="text" matInput placeholder="Ex. Categoria para já formados..." formControlName="descricao" [(ngModel)]="descricao"></textarea>
+    </mat-form-field>
+
+    <br>
+
+    <button mat-raised-button>Cadastrar</button>
+
+  </form>
+
+
+
+</div>
+

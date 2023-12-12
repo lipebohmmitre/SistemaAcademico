@@ -1,5 +1,5 @@
 
-<div>
+<div *ngIf="!mostrar">
 
   <section class="table__body">
     <table>
@@ -27,7 +27,7 @@
 </div>
 
 <div *ngIf="mostrar" class="close-button-container">
-  <button (click)="fechar()" mat-raised-button color="warn">X</button>
+  <button (click)="fechar()" mat-raised-button color="warn" id="btn-close">X</button>
   <app-disciplina></app-disciplina>
 </div>
 

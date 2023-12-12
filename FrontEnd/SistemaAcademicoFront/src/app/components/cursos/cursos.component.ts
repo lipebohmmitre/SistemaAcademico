@@ -24,7 +24,6 @@ export class CursosComponent {
   ngOnInit(){
     this.cursoService.getCursosAndCategoria().subscribe(data => {
       this.cursos = data;
-      console.log(this.cursos);
     });
   }
 
@@ -46,10 +45,6 @@ export class CursosComponent {
 
   fechar(){
     this.mostrar = false;
-  }
-
-  mostrarCOnsole(item: any){
-    console.log("item: ", item);
   }
 
 }

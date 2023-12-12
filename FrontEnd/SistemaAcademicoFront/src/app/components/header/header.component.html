@@ -10,19 +10,34 @@
 
         <mat-menu #appMenu="matMenu">
           <button mat-menu-item [matMenuTriggerFor]="subMenu">Consultar</button>
+          <button mat-menu-item [matMenuTriggerFor]="subMenuDisc">Disciplinas</button>
           <button mat-menu-item [matMenuTriggerFor]="subMenuCat">Categorias</button>
+          <button mat-menu-item [matMenuTriggerFor]="subMenuSubCat">Sub-Categorias</button>
         </mat-menu>
 
         <mat-menu #subMenu="matMenu">
           <a mat-menu-item [routerLink]="['/cursos']" routerLinkActive="selected" >Exibir Cursos</a>
           <a mat-menu-item>Editar</a>
-          <a mat-menu-item>Adicionar</a>
+          <a mat-menu-item [routerLink]="['/addCursos']" routerLinkActive="selected">Adicionar</a>
+        </mat-menu>
+
+        <mat-menu #subMenuDisc="matMenu">
+          <a mat-menu-item [routerLink]="['/disciplinas']" routerLinkActive="selected" >Exibir Disciplinas</a>
+          <button mat-menu-item>Editar</button>
+          <a mat-menu-item [routerLink]="['/addDisciplina']" routerLinkActive="selected">Adicionar</a>
+          <a mat-menu-item [routerLink]="['/vincularDisciplinaCurso']" routerLinkActive="selected">Vincular Disciplina com Curso</a>
         </mat-menu>
 
         <mat-menu #subMenuCat="matMenu">
-          <button mat-menu-item>Exibir Categorias</button>
+          <a mat-menu-item [routerLink]="['/categorias']" routerLinkActive="selected" >Exibir Categorias</a>
           <button mat-menu-item>Editar</button>
-          <button mat-menu-item>Adicionar</button>
+          <a mat-menu-item [routerLink]="['/addCategoria']" routerLinkActive="selected">Adicionar</a>
+        </mat-menu>
+
+        <mat-menu #subMenuSubCat="matMenu">
+          <a mat-menu-item [routerLink]="['/subCategorias']" routerLinkActive="selected" >Exibir Sub-Categorias</a>
+          <button mat-menu-item>Editar</button>
+          <a mat-menu-item [routerLink]="['/addSubCategoria']" routerLinkActive="selected">Adicionar</a>
         </mat-menu>
       </span>
 
